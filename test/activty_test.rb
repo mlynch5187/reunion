@@ -14,19 +14,18 @@ class ActivityTest < MiniTest::Test
 
   def test_activities_have_attributes
     assert_equal "Brunch", @activity.name
+    assert_equal ({}), @activity.participants
   end
 
+  def test_participants_can_be_added
+    assert_equal ({}), @activity.participants
+
+    @activity.add_participant("Maria", 20)
+
+    assert_equal ({"Maria" => 20}), @activity.participants
+  end
 end
 
-
-# pry(main)> activity.name
-# # => "Brunch"
-#
-# pry(main)> activity.participants
-# # => {}
-#
-# pry(main)> activity.add_participant("Maria", 20)
-#
 # pry(main)> activity.participants
 # # => {"Maria" => 20}
 #
