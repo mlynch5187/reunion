@@ -13,4 +13,8 @@ class Activity
   def total_cost
     @participants.values.sum
   end
+
+  def split
+    total_cost / @participants.values.length
+  end
 end

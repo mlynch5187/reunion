@@ -35,12 +35,50 @@ class ActivityTest < MiniTest::Test
     assert_equal ({"Maria" => 20, "Luther" => 40}), @activity.participants
     assert_equal 60, @activity.total_cost
   end
+
+  def test_total_cost_can_be_split_among_participants
+    @activity.add_participant("Maria", 20)
+    @activity.add_participant("Luther", 40)
+
+    assert_equal 60, @activity.total_cost
+    assert_equal 30, @activity.split
+  end
 end
 
-# pry(main)> activity.add_participant("Luther", 40)
+# pry(main)> activity.add_participant("Maria", 20)
 #
-# pry(main)> activity.participants
-# # => {"Maria" => 20, "Luther" => 40}
+# pry(main)> activity.add_participant("Luther", 40)
 #
 # pry(main)> activity.total_cost
 # # => 60
+#
+# pry(main)> activity.split
+# # => 30
+#
+# pry(main)> activity.owed
+# # => {"Maria" => 10, "Luther" => -10}
+# ```
+#
+# Additionaly, use TDD to create a Reunion class that responds to the following interaction pattern:
+#
+# ```ruby
+# pry(main)> require './lib/reunion'
+# # => true
+#
+# pry(main)> reunion = Reunion.new("1406 BE")
+# # => #<Reunion:0x007fe4ca1defc8 ...>
+#
+# pry(main)> reunion.name
+# # => "1406 BE"
+#
+# pry(main)> reunion.activities
+# # => []
+#
+# pry(main)> activity_1 = Activity.new("Brunch")
+# # => #<Activity:0x007fe4ca1d9438 ...>
+#
+# pry(main)> reunion.add_activity(activity_1)
+#
+# pry(main)> reunion.activities
+# # => [#<Activity:0x007fe4ca1d9438 ...>]
+# ```
