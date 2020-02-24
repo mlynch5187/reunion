@@ -43,18 +43,15 @@ class ActivityTest < MiniTest::Test
     assert_equal 60, @activity.total_cost
     assert_equal 30, @activity.split
   end
+
+  def test_amount_owed_can_be_calculated
+    @activity.add_participant("Maria", 20)
+    @activity.add_participant("Luther", 40)
+
+    assert_equal ({"Maria" => 10, "Luther" => -10}), @activity.owed
+  end
 end
 
-# pry(main)> activity.add_participant("Maria", 20)
-#
-# pry(main)> activity.add_participant("Luther", 40)
-#
-# pry(main)> activity.total_cost
-# # => 60
-#
-# pry(main)> activity.split
-# # => 30
-#
 # pry(main)> activity.owed
 # # => {"Maria" => 10, "Luther" => -10}
 # ```
