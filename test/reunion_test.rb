@@ -43,11 +43,15 @@ class ReunionTest < MiniTest::Test
 
     assert_equal 180, @reunion.total_cost
   end
+
+  def test_total_cost_for_entire_reunion_can_be_retrieved
+    @reunion.add_activity(@activity_1)
+    @reunion.add_activity(@activity_2)
+    
+    assert_equal ({"Maria" => -10, "Luther" => -30, "Louis" => 40}), @reunion.breakout
+  end
 end
 
-# pry(main)> reunion.breakout
-# # => {"Maria" => -10, "Luther" => -30, "Louis" => 40}
-#
 # pry(main)> reunion.summary
 # # => "Maria: -10\nLuther: -30\nLouis: 40"
 #
